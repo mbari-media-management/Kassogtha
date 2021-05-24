@@ -5,10 +5,6 @@ A very simple video localization/annotation tool. It's meant to be used in tande
 
 <img src="app/src/main/resources/kassogthaLogo.jpg" alt="drawing" width="200"/>
 
-A CSUMB Capstone student project created by:
-
-- [Kyle Dilbeck](https://github.com/XYIAN) 
-- [Federico Rubino](https://github.com/FedericoRubino)  
 
 ## For Developers
 
@@ -25,3 +21,12 @@ gradlew jpackage --info
 ```
 
 The finished applications will be found in `app/build/jpackage`.
+
+
+## Acknowledgements
+
+A CSUMB Capstone student project created by:
+
+- [Kyle Dilbeck](https://github.com/XYIAN) 
+- [Federico Rubino](https://github.com/FedericoRubino)  
+- [Frank Piva](https://github.com/frankpiva)
