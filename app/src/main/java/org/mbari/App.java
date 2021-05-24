@@ -98,7 +98,7 @@ public class App extends Application {
 
         // ------------------------------- ICON --------------------------------------------
 
-        Image icon = new Image("/icons/octopus.png");
+        Image icon = new Image(getClass().getResource("/icons/octopus.png").toExternalForm());
 
         stage.getIcons().add(icon);
 
@@ -179,7 +179,7 @@ public class App extends Application {
 
         
         // // ----- Image -----
-        Image logo = new Image("icons/kassogthaLogoSide.jpg");
+        Image logo = new Image(getClass().getResource("/icons/kassogthaLogoSide.jpg").toExternalForm());
         ImageView logoView = new ImageView();
         logoView.setFitHeight(70);
         logoView.setFitWidth(200);
