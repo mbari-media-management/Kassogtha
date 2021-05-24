@@ -57,4 +57,51 @@ jlink {
         name = 'Kassogtha'
         jvmArgs = ['-Dlog4j.configurationFile=./log4j2.xml']
     }
+    jpackage {
+        def customInstallerOptions = [
+                "--app-version", project.version,
+                "--copyright", "Monterey Bay Aquarium Research Institute 2020",
+                "--name", "Kassogtha",
+                "--vendor", "org.mbari"
+        ]
+        def os = org.gradle.internal.os.OperatingSystem.current()
+        if (os.isLinux()) {
+            customInstallerOptions.addAll([
+                "--linux-package-name", "Kassogtha"
+            ])
+        }
+        else if (os.isWindows()) {
+            customInstallerOptions.addAll([
+                "--win-upgrade-uuid", "2afa1e7b-9c54-5007-accb-637b61826967",
+                "--win-menu-group", "VARS",
+                "--win-menu"
+            ])
+        }
+        else if (os.isMacOsX()) {
+            customInstallerOptions.addAll([
+                "--mac-package-name", "Kassogtha",
+                "--mac-package-identifier", "org.mbari.Kassogtha"
+            ])
+
+            /*
+                This is usually something like "Developer ID Application: My Awsome Org (0AB1C234D5)". The codesigner app uses the 
+                whole name, includeing "Developer ID Application", but jpackage only wants the section AFTER that. This section of
+                code handles either case and munges if needed to a jpackage friendly form.
+             */
+            def user = System.getenv("MAC_CODE_SIGNER")
+            def marker = "Developer ID Application:"
+            if (user.startsWith(marker)) {
+                user = user.substring(marker.length() + 1)
+            }
+            if (user) {
+                def homeDir = System.getenv("HOME")
+                customInstallerOptions.addAll([
+                    "--mac-sign",
+                    "--mac-signing-key-user-name", user,
+                    "--mac-signing-keychain", "$homeDir/Library/Keychains/login.keychain-db"
+                ])
+            }
+        }
+        installerOptions = customInstallerOptions
+    }
 }
