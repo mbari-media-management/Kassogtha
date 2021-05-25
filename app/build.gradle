@@ -62,7 +62,7 @@ jlink {
                 "--app-version", project.version,
                 "--copyright", "Monterey Bay Aquarium Research Institute 2020",
                 "--name", "Kassogtha",
-                "--vendor", "org.mbari"
+                "--vendor", "org.mbari",
         ]
         def os = org.gradle.internal.os.OperatingSystem.current()
         if (os.isLinux()) {
@@ -80,8 +80,10 @@ jlink {
         else if (os.isMacOsX()) {
             customInstallerOptions.addAll([
                 "--mac-package-name", "Kassogtha",
-                "--mac-package-identifier", "org.mbari.Kassogtha"
+                "--mac-package-identifier", "org.mbari.Kassogtha",
             ])
+
+            imageOptions = ["--icon", "src/jpackage/resources/mac/Kassogtha.icns"]
 
             /*
                 This is usually something like "Developer ID Application: My Awsome Org (0AB1C234D5)". The codesigner app uses the 
