@@ -14,6 +14,11 @@ plugins {
     
 }
 
+version = "1.0.0"
+
+sourceCompatibility = 16
+targetCompatibility = 16
+
 repositories {
     // Use Maven Central for resolving dependencies.
     mavenCentral()
